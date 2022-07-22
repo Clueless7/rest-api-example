@@ -77,7 +77,7 @@ const deletePostById = async (req, res) => {
 
     if (!deletedPost) {
       res.status(404).json({
-        message: 'Post id not found',
+        message: 'Post not found',
       })
       return
     }
