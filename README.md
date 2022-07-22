@@ -10,4 +10,4 @@
 ### Running locally
 
 1. `npm install`
-2. Create a env file with the MONGO_URI variable set to your MongoDB connection string
+2. Create a .env file with the MONGO_URI variable set to your MongoDB connection string
