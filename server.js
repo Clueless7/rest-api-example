@@ -8,12 +8,15 @@ connectDB()
 
 app.use(express.json())
 
+app.use('/api/users/:userId/posts', require('./routes/postRoutes'))
 app.use('/api/users', require('./routes/userRoutes'))
-app.get('/', (req, res) => {
-  res.send('Hi')
-})
-app.use((req, res) => {
-  res.status(404).send('Page not found')
+
+app.use((err, req, res, next) => {
+  if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
+    console.error(err)
+    return res.status(400).send({ status: 404, message: err.message }) // Bad request
+  }
+  next()
 })
 
 app.listen(PORT, () => {
